@@ -47,18 +47,19 @@ define(['functions', 'settings'], function(func, settings) {
                     if (i + 1 < grid.length) {
                         var g = settings.option.grid.gradient(grid[i + 1][j]);
                         var dif = gradient.height - g.height;
-                        while (dif > 0) {
+                        while (dif > 0 && gradient.height > 0) {
                             //console.log('backfill1');
                             resources.draw(this.context, 27, cx + x, cy + y + (resources.displayH * dif));
                             dif--;
                         }
+
                     }
 
                     //this checks the tile front-right and backfills untill there are no gaps
                     if (j + 1 < grid.length) {
                         var g = settings.option.grid.gradient(grid[i][j + 1]);
                         var dif = gradient.height - g.height;
-                        while (dif > 0) {
+                        while (dif > 0 && gradient.height > 0) {
                             resources.draw(this.context, 27, cx + x, cy + y + (resources.displayH * dif));
                             dif--;
                         }
