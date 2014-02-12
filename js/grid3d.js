@@ -29,35 +29,31 @@ define(['libs/perlin.simplex', 'libs/simplex.perlin', 'settings'], function(simp
 
 
 
-        this.function = this.noise[settings.option.perlin.function];
+        this.
+                function = this.noise[settings.option.perlin.function];
     };
 
     grid.prototype.addNoiseFunction = function(opt) {
         this.noise[opt.name] = opt.
-
-        function;
+                function;
     }
 
     grid.prototype.useNoiseFunction = function(name) {
         this.
-
-        function = this.noise[name];
+                function = this.noise[name];
     }
 
+
     grid.prototype.createGrid = function() {
-        this.function = this.noise[settings.option.perlin.function];
-        var p = simplex;
-        var height = new Array(maxX);
+        //this.function = this.noise[settings.option.perlin.function];
+
         var maxZ = 80;
-        var maxX = 80; //settings.option.grid.x
-        var maxY = 80; //settings.option.grid.y;
+
+        var maxX = 80;//settings.option.grid.x
+        var maxY = 80;//settings.option.grid.y;
         var fScl = .0422;
-        var zzz = Math.random() * 100;
-        var x, y, xx, yy, zz;
-
-
-        window.bla = [];
-
+        var zz = Math.random() * 100;
+        var x, y, xx, yy;
         perlin.setRng(Math); //math has a random number generator called 'random()'
         perlin.noiseDetail(settings.option.grid.octavtes, settings.option.grid.persistence);
         for (var z = 0; z < maxZ; z++) {
@@ -69,14 +65,14 @@ define(['libs/perlin.simplex', 'libs/simplex.perlin', 'settings'], function(simp
                     yy = 0 + y * fScl;
                     zz = 0 + z * fScl;
 
-                    var n = simplex.noise3d(xx, yy, zz);
-                    //if(n < simplex.noise(xx,yy,zzz)) {
-                    //    n = 1;
-                    //}
+                    if (perlin.noise(xx, yy, zz) * maxZ < z) {
+                        this.grid[z][y][x] = 2;
+                    } else {
+                        //simplex.noise(xx, yy, Math)
+                        this.grid[z][y][x] = simplex.noise3d(xx, yy, zz*0.3);//simplex.noise3d(xx, yy, zz);      
+                    }
 
-                    //window.bla.push(simplex.noise(xx,yy,zz));
 
-                    this.grid[z][y][x] = (perlin.noise(xx,yy,zzz)*z)<50?n:2;
                 }
             }
         }
@@ -96,8 +92,7 @@ define(['libs/perlin.simplex', 'libs/simplex.perlin', 'settings'], function(simp
 
                 //console.log(xx + ' ' + yy);
                 this.grid[y][x] = this.
-
-                function(p.noise(xx, yy, loop * 0.005));
+                        function(p.noise(xx, yy, loop * 0.005));
             }
         }
     }

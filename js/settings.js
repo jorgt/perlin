@@ -47,7 +47,9 @@ define([], function() {
                         var water = 0.15;
                         var ret = {};
                         ret.tile = 4;
-                        ret.height = Math.floor(Math.pow((noise * 4), 2.3));
+                        ret.height = Math.pow((noise * 4), 2.3);
+                        ret.noise = noise;
+                        
                         if (noise < water) {
                             ret.tile = 13;
                             ret.height = -1;
@@ -93,6 +95,60 @@ define([], function() {
                     persistence: 0.5
                 }
             },
+            normalgrid: {
+                grid: {
+                    x: 5,
+                    y: 5,
+                    gradient: function(noise) {
+                        var water = 0.15;
+                        var ret = {};
+                        ret.tile = 4;
+                        ret.height = Math.floor(Math.pow((noise * 4), 2.3));
+                        if (noise < water) {
+                            ret.tile = 13;
+                            ret.height = -1;
+                        } else if (noise < 0.2) {
+                            ret.height = 0;
+                            ret.tile = 18;
+                        } else if (noise < 0.25) {
+                            ret.tile = 18;
+                        } else if (noise < 0.35) {
+                            ret.tile = 19;
+                        } else if (noise < 0.55) {
+                            ret.tile = 20;
+                        } else if (noise < 0.60) {
+                            ret.tile = 21;
+                        } else if (noise < 0.65) {
+                            ret.tile = 22;
+                        } else if (noise < 0.75) {
+                            ret.tile = 23;
+                        } else if (noise < 0.78) {
+                            ret.tile = 24;
+                        } else if (noise < 0.85) {
+                            ret.tile = 25;
+                        } else if (noise < 0.95) {
+                            ret.tile = 26;
+                        } else {
+                            ret.tile = 29;
+                        }
+
+                        return ret;
+                    }
+                },
+                screen: {
+                    top: 300,
+                    left: -1200,
+                    scale: {
+                        x: 1,
+                        y: 1
+                    }
+                },
+                perlin: {
+                    function: 'normal',
+                    octaves: 6,
+                    persistence: 0.5
+                }
+            },
             grid: {
                 grid: {
                     x: 300,
@@ -124,7 +180,6 @@ define([], function() {
                         } else if (noise < 1.1) {
                             ret.tile = 26;
                         } else {
-
                             ret.tile = 29;
                         }
 
@@ -199,13 +254,14 @@ define([], function() {
             },
             experiment: {
                 grid: {
-                    x: 5,
-                    y: 5,
+                    x: 100,
+                    y: 100,
                     gradient: function(noise) {
-                        var water = 0.15;
+                        var water = 0.1;
                         var ret = {};
                         ret.tile = 4;
-                        ret.height = Math.floor(Math.pow((noise * 4), 2.3));
+                        ret.height = Math.pow((noise * 4), 1.6); //Math.floor(noise*5);
+
                         if (noise < water) {
                             ret.tile = 13;
                             ret.height = -1;
@@ -228,7 +284,7 @@ define([], function() {
                             ret.tile = 24;
                         } else if (noise < 0.85) {
                             ret.tile = 25;
-                        } else if (noise < 0.95) {
+                        } else if (noise < 0.90) {
                             ret.tile = 26;
                         } else {
                             ret.tile = 29;
@@ -238,17 +294,17 @@ define([], function() {
                     }
                 },
                 screen: {
-                    top: 300,
-                    left: -650,
+                    top: 500,
+                    left: 0,
                     scale: {
-                        x: 1,
-                        y: 1
+                        x: 0.5,
+                        y: 0.5
                     }
                 },
                 perlin: {
-                    function: 'normal',
+                    function: 'lines',
                     octaves: 6,
-                    persistence: 0.5
+                    persistence: 0.2
                 }
             },
             grid3d: {
@@ -293,7 +349,7 @@ define([], function() {
                     }
                 },
                 screen: {
-                    top: 1200,
+                    top: 700,
                     left: 0,
                     scale: {
                         x: 0.5,
