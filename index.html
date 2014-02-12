@@ -1,0 +1,49 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            body,html{
+                padding: 0;
+                margin:0;
+                sbackground-color: #3C292C;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="game"></canvas>
+        <script type="text/javascript">
+            var require = {
+                waitSeconds: 15,
+                urlArgs : "bust="+new Date().getTime()
+            };
+        </script>
+        <script data-main="js/main" src="js/libs/require.min.js"></script>
+        <script>
+            var btn=document.createElement("button");
+            var t=document.createTextNode("pause");
+            btn.appendChild(t);
+            btn.style.position = 'fixed';
+            btn.style.top= '30px';
+            btn.style.left = '15px';
+            btn.onclick = function() {
+                window.engine.toggle();
+            }
+            document.body.appendChild(btn);
+
+            var height = document.createElement('input');
+            height.type='range';
+            height.style.position = 'fixed';
+            height.style.top= '30px';
+            height.style.left = '15px';
+        </script>
+    </body>
+</html>
