@@ -49,7 +49,7 @@ define([], function() {
                         ret.tile = 4;
                         ret.height = Math.pow((noise * 4), 2.3);
                         ret.noise = noise;
-                        
+
                         if (noise < water) {
                             ret.tile = 13;
                             ret.height = -1;

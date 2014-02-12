@@ -47,25 +47,24 @@ define(['functions', 'settings'], function(func, settings) {
                     if (i + 1 < grid.length) {
                         var g = settings.option.grid.gradient(grid[i + 1][j]);
                         var dif = gradient.height - g.height;
-                        while (dif > 0 && gradient.height > 0) {
+                        while (dif > 0 && gradient.height > 1) {
                             //console.log('backfill1');
                             resources.draw(this.context, 27, cx + x, cy + y + (resources.displayH * dif));
                             dif--;
                         }
-
                     }
 
                     //this checks the tile front-right and backfills untill there are no gaps
                     if (j + 1 < grid.length) {
                         var g = settings.option.grid.gradient(grid[i][j + 1]);
                         var dif = gradient.height - g.height;
-                        while (dif > 0 && gradient.height > 0) {
+                        while (dif > 0 && gradient.height > 1) {
                             resources.draw(this.context, 27, cx + x, cy + y + (resources.displayH * dif));
                             dif--;
                         }
                     }
 
-                    //this fills up the right side of the box
+                    //this fills up the sides of the box
                     if (j === grid[0].length - 1 || i === grid.length - 1) {
                         var dif = gradient.height;
                         while (dif > 0) {
@@ -89,6 +88,7 @@ define(['functions', 'settings'], function(func, settings) {
             this.canvas.width = 0;
             this.canvas.width = w;
             this.context.font = "bold 50px sans-serif";
+            this.context.fillStyle = '#fff';
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.context.scale(settings.option.screen.scale.x, settings.option.screen.scale.y);
         },
